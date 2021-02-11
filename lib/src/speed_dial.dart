@@ -367,42 +367,28 @@ class _SpeedDialState extends State<SpeedDial> with TickerProviderStateMixin {
 
     switch (widget.orientation) {
       case SpeedDialOrientation.Down:
-        return PositionedDirectional(
-          top: MediaQuery.of(context).size.height -
-              56 -
-              (widget.marginBottom - 16),
-          end: widget.marginEnd - 16,
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: List.from(fabChildren.reversed)
-                ..insert(
-                    0,
-                    Container(
-                      margin: EdgeInsetsDirectional.only(bottom: 8.0, end: 2.0),
-                      child: animatedFloatingButton,
-                    )),
-            ),
-          ),
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: List.from(fabChildren.reversed)
+            ..insert(
+                0,
+                Container(
+                  margin: EdgeInsetsDirectional.only(bottom: 8.0, end: 2.0),
+                  child: animatedFloatingButton,
+                )),
         );
         break;
       case SpeedDialOrientation.Up:
       default:
-        return PositionedDirectional(
-          bottom: widget.marginBottom - 16,
-          end: widget.marginEnd - 16,
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: List.from(fabChildren)
-                ..add(Container(
-                  margin: EdgeInsetsDirectional.only(top: 8.0, end: 2.0),
-                  child: animatedFloatingButton,
-                )),
-            ),
-          ),
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: List.from(fabChildren)
+            ..add(Container(
+              margin: EdgeInsetsDirectional.only(top: 8.0, end: 2.0),
+              child: animatedFloatingButton,
+            )),
         );
         break;
     }
