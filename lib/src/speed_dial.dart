@@ -112,6 +112,8 @@ class SpeedDial extends StatefulWidget {
   /// and the child.
   final Widget activeChild;
 
+  final Alignment alignment;
+
   SpeedDial({
     Key key,
     this.children = const [],
@@ -122,6 +124,7 @@ class SpeedDial extends StatefulWidget {
     this.buttonSize = 56.0,
     this.dialRoot,
     this.useInkWell = false,
+    this.alignment = Alignment.bottomRight,
     this.overlayOpacity = 0.8,
     this.overlayColor,
     this.tooltip,
@@ -367,11 +370,8 @@ class _SpeedDialState extends State<SpeedDial> with TickerProviderStateMixin {
 
     switch (widget.orientation) {
       case SpeedDialOrientation.Down:
-        return PositionedDirectional(
-          top: MediaQuery.of(context).size.height -
-              56 -
-              (widget.marginBottom - 16),
-          end: widget.marginEnd - 16,
+        return Align(
+          alignment: widget.alignment,
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -389,9 +389,8 @@ class _SpeedDialState extends State<SpeedDial> with TickerProviderStateMixin {
         break;
       case SpeedDialOrientation.Up:
       default:
-        return PositionedDirectional(
-          bottom: widget.marginBottom - 16,
-          end: widget.marginEnd - 16,
+        return Align(
+          alignment: widget.alignment,
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -428,8 +427,8 @@ class _SpeedDialState extends State<SpeedDial> with TickerProviderStateMixin {
     return (_open)
         ? stack
         : Container(
-            width: 56,
-            height: 56,
+            width: widget.buttonSize,
+            height: widget.buttonSize,
             child: stack,
           );
   }
